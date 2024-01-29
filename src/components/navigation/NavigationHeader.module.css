@@ -1,0 +1,61 @@
+.nav {
+  padding: 1rem 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left {
+  display: flex;
+}
+
+.appLogo {
+  margin: 0 2rem;
+  font-size: 1.2rem;
+}
+
+.logo {
+  color: #003566;
+}
+
+.logo svg {
+  margin-bottom: -2px;
+}
+
+.navLinks {
+  position: relative;
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.navLinks::before {
+  position: absolute;
+  content: "";
+  border: 1px solid var(--color-secondary-dark);
+  height: 39px;
+  left: 0;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.country {
+  margin: 0 2rem;
+  font-size: 1.2rem;
+}
+
+.country span:nth-child(2) {
+  margin-left: 1rem;
+  text-transform: lowercase;
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+  cursor: pointer;
+}

@@ -1,9 +1,10 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import Image from "next/image";
 
-import { getGenres, getCountries, getLanguages, fetchMoviesByPage } from "@/utils/themoviedb";
-import { getCachedCountry } from "@/utils/sessionStorage";
-import { appConfig } from "@/constants/config";
+import { getGenres, getCountries, getLanguages } from "@/utils/themoviedb";
+import CountryList from "@/components/country-list/CountryList";
+import FilterInput from "@/components/filter-input/FilterInput";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -47,15 +48,15 @@ const imagesConfig = [
   { path: "/images/image-24.jpg", alt: "Hero image from movie Rambo: First Blood" },
 ];
 
-export default async function Home({ params }: any) {
-  console.log("params", params);
+export default async function Home() {
   const genres = await getGenres();
   const languages = await getLanguages();
   const countries = await getCountries();
-  // const activeCountry = getCachedCountry();
-  // const activeCountryCode = activeCountry ? activeCountry.code : appConfig.defaultActiveCountry.code;
-  // const moviesNowPlayingResponse = await fetchMoviesByPage(1, "/movie/now_playing", { region: activeCountryCode });
-  // const moviesNowPlaying = moviesNowPlayingResponse.results;
+
+  function filterChangeHandler(filterText: string) {
+    "use client";
+    console.log("Filter value", filterText);
+  }
 
   return (
     <section className={styles.homepage}>
@@ -82,20 +83,20 @@ export default async function Home({ params }: any) {
             </div>
           </div>
         </div>
-        <div className={styles.movieCategories}>
-          <div className={styles.moviesByGenre}>
+        <div className={styles.browseMovies}>
+          <div className={styles.byGenre}>
+            <div className={styles.byGenreTitle}>Browse by genre</div>
             <div className={styles.genreCards}>
               <ul className={styles.genreList}>
                 {genres.map((genre) => (
                   <li key={genre.id} className={styles.genreItem}>
-                    {genre.name}
+                    <Link href={`/browse?genre=${genre.name.toLowerCase()}`}>{genre.name}</Link>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className={styles.browseByGenre}></div>
           </div>
-          <div className={styles.moviesByCountry}></div>
+          <CountryList loadedCountries={countries} />
         </div>
       </main>
     </section>

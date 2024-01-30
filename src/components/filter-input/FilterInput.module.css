@@ -1,0 +1,16 @@
+.filter {
+  margin-bottom: 2rem;
+}
+
+.input {
+  background-color: transparent;
+  border: 1px solid #666666;
+  padding: 10px 15px;
+  width: 50%;
+  border-radius: 15px;
+}
+
+.input:focus,
+.input:active {
+  border: 2px solid red;
+}

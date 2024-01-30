@@ -12,15 +12,26 @@ type CountryListProps = {
 };
 
 function CountryList({ loadedCountries }: CountryListProps) {
-  const [countries, setCountries] = useState(loadedCountries);
+  const sortedCountries = loadedCountries.sort((c1, c2) => {
+    if (c1.english_name < c2.english_name) {
+      return -1;
+    }
+
+    if (c1.english_name < c2.english_name) {
+      return 1;
+    }
+
+    return 0;
+  });
+  const [countries, setCountries] = useState(sortedCountries);
 
   function filterChangeHandler(filterText: string) {
     const trimmedFilterText = filterText.trim();
     if (trimmedFilterText.trim().length > 0) {
-      const filteredCountries = loadedCountries.filter((country) => country.english_name.toLowerCase().includes(trimmedFilterText.toLowerCase()));
+      const filteredCountries = sortedCountries.filter((country) => country.english_name.toLowerCase().startsWith(trimmedFilterText.toLowerCase()));
       setCountries(filteredCountries);
     } else {
-      setCountries(loadedCountries);
+      setCountries(sortedCountries);
     }
   }
 

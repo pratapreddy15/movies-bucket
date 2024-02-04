@@ -55,13 +55,11 @@
   margin: 2rem 0;
 }
 
-.byGenre,
-.byCountry {
+.byGenre {
   margin: 4rem 0;
 }
 
-.byGenreTitle,
-.byCountryTitle {
+.byGenreTitle {
   padding-bottom: 5px;
   font-size: 1.5rem;
   font-weight: 500;
@@ -73,23 +71,20 @@
 .genreCards {
 }
 
-.genreList,
-.countryList {
+.genreList {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 15px 15px;
 }
 
-.genreItem,
-.countryItem {
+.genreItem {
   cursor: pointer;
   padding: 2rem 4rem;
   width: 250px;
   text-align: center;
   border-radius: 8px;
-  border: 1px solid var(--color-secondary-dark);
-  box-shadow: 0 0 4px rgba(121, 120, 120, 0.8);
+  box-shadow: 0 0 4px var(--color-secondary-dark);
   transition: all 0.1s ease;
 
   display: flex;
@@ -98,7 +93,6 @@
   align-items: center;
 }
 
-.genreItem:hover,
-.countryItem:hover {
+.genreItem:hover {
   transform: scale(0.98);
 }

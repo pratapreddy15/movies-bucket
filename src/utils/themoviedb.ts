@@ -7,7 +7,7 @@ export async function getCountries() {
   const key = getTmdbApiKey();
   const response = await fetch(`https://api.themoviedb.org/3/watch/providers/regions?api_key=${key}`, {
     next: {
-      revalidate: envConfig.revalidationInterval, // latest now playing movies every 6 hours
+      revalidate: envConfig.revalidationInterval, // latest now playing movies every hour
     },
   });
 
@@ -19,7 +19,7 @@ export async function getLanguages() {
   const key = getTmdbApiKey();
   const response = await fetch(`https://api.themoviedb.org/3/configuration/languages?api_key=${key}`, {
     next: {
-      revalidate: envConfig.revalidationInterval, // latest now playing movies every 6 hours
+      revalidate: envConfig.revalidationInterval, // latest now playing movies every hour
     },
   });
 
@@ -31,7 +31,7 @@ export async function getGenres() {
   const key = getTmdbApiKey();
   const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=${key}`, {
     next: {
-      revalidate: envConfig.revalidationInterval, // latest now playing movies every 6 hours
+      revalidate: envConfig.revalidationInterval, // latest now playing movies every hour
     },
   });
 
@@ -62,7 +62,7 @@ export async function fetchMoviesByPage(pageNumber: number, pathName: string, qu
   searchParams.append("api_key", key);
   searchParams.append("page", `${pageNumber}`);
   const params = searchParams.toString();
-
+  // https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&api_key=74eba96570250a098a3f45a5d1fb79e8
   const url = `${envConfig.theMovieDb.baseUrl}${pathName}?${params}`;
 
   const response = await fetch(url, {

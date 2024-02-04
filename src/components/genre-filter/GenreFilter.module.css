@@ -1,0 +1,68 @@
+.genresFilter {
+  padding: 10px 15px;
+}
+
+.toggleGenreBtn {
+  padding: 10px 15px;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 0 4px var(--color-primary-dark);
+}
+
+.toggleGenreBtn:focus {
+  border: 0;
+  outline: 0;
+}
+
+.icon {
+  padding: 0 10px;
+}
+
+.genreList {
+  list-style: none;
+  margin-top: 15px;
+  height: 0;
+  overflow-x: hidden;
+  transition: all 0.2s ease;
+}
+
+.genreList.expand {
+  height: 250px;
+  max-height: 250px;
+  overflow-y: scroll;
+  scrollbar-color: red orange;
+  scrollbar-width: 20px;
+  scroll-behavior: smooth;
+  --webkit-scrollbar-color: red orange;
+  --webkit-scrollbar-width: thin;
+  --webkit-scroll-behavior: smooth;
+  --moz-scrollbar-color: red orange;
+  --moz-scrollbar-width: thin;
+  --moz-scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+.genreItem {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 1rem;
+  padding: 10px 20px;
+  padding-left: 5px;
+  cursor: pointer;
+}
+
+.genreItem label {
+  padding-left: 15px;
+  height: 100%;
+  cursor: pointer;
+}
+
+.genreItem label:hover {
+  color: var(--color-primary-dark);
+  font-weight: 600;
+}

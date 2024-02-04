@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import { getGenres, getCountries, getLanguages } from "@/utils/themoviedb";
 import CountryList from "@/components/country-list/CountryList";
-import FilterInput from "@/components/filter-input/FilterInput";
+import Spinner from "@/components/spinner/Spinner";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -52,11 +52,6 @@ export default async function Home() {
   const genres = await getGenres();
   const languages = await getLanguages();
   const countries = await getCountries();
-
-  function filterChangeHandler(filterText: string) {
-    "use client";
-    console.log("Filter value", filterText);
-  }
 
   return (
     <section className={styles.homepage}>

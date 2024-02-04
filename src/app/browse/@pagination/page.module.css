@@ -1,0 +1,22 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  width: 70px;
+  text-align: center;
+}
+
+.prevPage {
+}
+
+.nextPage {
+}
+
+.prevPageBtn {
+}
+
+.nextPageBtn {
+}

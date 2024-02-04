@@ -1,5 +1,5 @@
 export const envConfig = {
-  revalidationInterval: 6 * 60 * 60,
+  revalidationInterval: 1 * 60 * 60,
   supabase: {
     baseUrl: process.env.SUPABASE_BASE_URL || "",
     accessToken: process.env.SUPABASE_ACCESS_TOKEN || "",

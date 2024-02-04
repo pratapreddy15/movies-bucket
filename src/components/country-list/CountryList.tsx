@@ -5,34 +5,46 @@ import Link from "next/link";
 import FilterInput from "@/components/filter-input/FilterInput";
 import { Country } from "@/types/model";
 import styles from "./CountryList.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type CountryListProps = {
   loadedCountries: Country[];
 };
 
-function CountryList({ loadedCountries }: CountryListProps) {
-  const sortedCountries = loadedCountries.sort((c1, c2) => {
+function sortCountries(countries: Country[]) {
+  const sortedCountries = countries.sort((c1, c2) => {
     if (c1.english_name < c2.english_name) {
       return -1;
     }
 
-    if (c1.english_name < c2.english_name) {
+    if (c1.english_name > c2.english_name) {
       return 1;
     }
 
     return 0;
   });
-  const [countries, setCountries] = useState(sortedCountries);
+
+  return sortedCountries;
+}
+
+function CountryList({ loadedCountries }: CountryListProps) {
+  const [countries, setCountries] = useState<Country[]>([]);
+
+  useEffect(() => {
+    const sortedCountries = sortCountries(loadedCountries);
+    setCountries(sortedCountries);
+  }, []);
 
   function filterChangeHandler(filterText: string) {
     const trimmedFilterText = filterText.trim();
+    const sorted = [];
+
     if (trimmedFilterText.trim().length > 0) {
-      const filteredCountries = sortedCountries.filter((country) => country.english_name.toLowerCase().startsWith(trimmedFilterText.toLowerCase()));
-      setCountries(filteredCountries);
-    } else {
-      setCountries(sortedCountries);
+      const filteredCountries = loadedCountries.filter((country) => country.english_name.toLowerCase().startsWith(trimmedFilterText.toLowerCase()));
+      const filteredAndSorted = sortCountries(filteredCountries);
+      sorted.push(...filteredAndSorted);
     }
+    setCountries(sorted);
   }
 
   return (

@@ -19,3 +19,15 @@ export type CountryCache = {
   code: string;
   name: string;
 };
+
+export type PaginationState = {
+  currentPageNumber: number;
+  totalPages: number;
+};
+
+export type PaginationContextType = {
+  currentPageNumber: number;
+  totalPages: number;
+  setCurrentPageNumber: (pageNumber: number) => void;
+  setTotalPagesCount: (count: number) => void;
+};

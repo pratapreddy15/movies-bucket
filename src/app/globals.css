@@ -3,6 +3,8 @@
 :root {
   /* --color-primary: #599ffe; */
   --color-secondary-dark: #15171a;
+  --color-secondary-light: #898a8b;
+  --color-secondary-lighter: #dddddd;
   --color-primary-dark: #ff2753;
 }
 

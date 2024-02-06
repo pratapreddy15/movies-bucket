@@ -62,7 +62,7 @@ export async function fetchMoviesByPage(pageNumber: number, pathName: string, qu
   searchParams.append("api_key", key);
   searchParams.append("page", `${pageNumber}`);
   const params = searchParams.toString();
-  // https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&api_key=74eba96570250a098a3f45a5d1fb79e8
+
   const url = `${envConfig.theMovieDb.baseUrl}${pathName}?${params}`;
 
   const response = await fetch(url, {
@@ -71,6 +71,28 @@ export async function fetchMoviesByPage(pageNumber: number, pathName: string, qu
     },
   });
   const moviesResponse = (await response.json()) as MovieResponse;
+  return moviesResponse;
+}
+
+export async function browseMovies(filters: KeyValuePair<string>, pageNumber?: number) {
+  const key = getTmdbApiKey();
+
+  const searchParams = new URLSearchParams(filters);
+  searchParams.append("api_key", key);
+  if (pageNumber && pageNumber > 0) {
+    searchParams.append("page", `${pageNumber}`);
+  }
+  const params = searchParams.toString();
+
+  const url = `${envConfig.theMovieDb.baseUrl}/discover/movie?${params}`;
+
+  const response = await fetch(url, {
+    next: {
+      revalidate: envConfig.revalidationInterval, // latest now playing movies every 6 hours
+    },
+  });
+  const moviesResponse = (await response.json()) as MovieResponse;
+
   return moviesResponse;
 }
 

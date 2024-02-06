@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { IoChevronDownSharp, IoChevronUpSharp } from "react-icons/io5";
 
@@ -32,10 +32,17 @@ function GenreFilter({ loadedGenres }: GenreFilterProps) {
   const [selectedGenres, setSelectedGenres] = useState<Genre[]>([]);
   const [isExpanded, setIsExpanded] = useState(false);
 
+  useEffect(() => {
+    if (selectedGenres.length > 0) {
+      router.push(`/browse?genres=${selectedGenres.map((genre) => genre.id).join(",")}`);
+    } else {
+      router.push("/browse");
+    }
+  }, [selectedGenres]);
+
   const toggleGenreItemHandler = useCallback((isSelected: boolean, genre: Genre) => {
     if (isSelected) {
       setSelectedGenres((curr) => [...curr, genre]);
-      router.push("/browse", {});
     } else {
       setSelectedGenres((curr) => curr.filter((g) => g.id !== genre.id));
     }

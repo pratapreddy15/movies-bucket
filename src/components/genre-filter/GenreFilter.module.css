@@ -33,13 +33,13 @@
   height: 250px;
   max-height: 250px;
   overflow-y: scroll;
-  scrollbar-color: red orange;
+  scrollbar-color: var(--color-primary-dark) var(--color-secondary-lighter);
   scrollbar-width: 20px;
   scroll-behavior: smooth;
-  --webkit-scrollbar-color: red orange;
+  --webkit-scrollbar-color: var(--color-primary-dark) var(--color-secondary-lighter);
   --webkit-scrollbar-width: thin;
   --webkit-scroll-behavior: smooth;
-  --moz-scrollbar-color: red orange;
+  --moz-scrollbar-color: var(--color-primary-dark) var(--color-secondary-lighter);
   --moz-scrollbar-width: thin;
   --moz-scroll-behavior: smooth;
   overflow-x: hidden;

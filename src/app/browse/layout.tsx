@@ -1,13 +1,9 @@
 import { getGenres } from "@/utils/themoviedb";
 import GenreFilter from "@/components/genre-filter/GenreFilter";
-import PaginationProvider from "@/context/pagination-context";
+// import PaginationProvider from "@/context/pagination-context";
 import styles from "./layout.module.css";
 
-export default async function BrowseLayout({
-  children,
-  movies,
-  pagination,
-}: Readonly<{ children: React.ReactNode; movies: React.ReactNode; pagination: React.ReactNode }>) {
+export default async function BrowseLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const genres = await getGenres();
   //   const countries = await getCountries();
 
@@ -22,10 +18,10 @@ export default async function BrowseLayout({
       </div>
       <div className={styles.filterResult}>
         {children}
-        <PaginationProvider>
+        {/* <PaginationProvider>
           {movies}
           {pagination}
-        </PaginationProvider>
+        </PaginationProvider> */}
       </div>
     </div>
   );

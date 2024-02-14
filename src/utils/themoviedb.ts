@@ -74,10 +74,22 @@ export async function fetchMoviesByPage(pageNumber: number, pathName: string, qu
   return moviesResponse;
 }
 
-export async function browseMovies(filters: KeyValuePair<string>, pageNumber?: number) {
+export async function browseMovies(filters: KeyValuePair<string>, pageNumber: number) {
   const key = getTmdbApiKey();
 
   const searchParams = new URLSearchParams(filters);
+
+  const releaseFromDate = new Date(searchParams.get("releaseFrom") || "");
+  const releaseToDate = new Date(searchParams.get("releaseTo") || "");
+
+  if (releaseFromDate.toString() === "Invalid Date" || releaseToDate.toString() === "Invalid Date") {
+    return Response.json({ message: "Release dates range are required to browse the movies" }, { status: 400, statusText: "Bad request" });
+  }
+
+  if (releaseFromDate > releaseToDate) {
+    return Response.json({ message: "Release from date cannot be after the release to date" }, { status: 400, statusText: "Bad request" });
+  }
+
   searchParams.append("api_key", key);
   if (pageNumber && pageNumber > 0) {
     searchParams.append("page", `${pageNumber}`);
@@ -93,7 +105,11 @@ export async function browseMovies(filters: KeyValuePair<string>, pageNumber?: n
   });
   const moviesResponse = (await response.json()) as MovieResponse;
 
-  return moviesResponse;
+  if (moviesResponse.total_pages > 500) {
+    return Response.json({ message: "Release dates range has more than allowed number of pages" }, { status: 400, statusText: "Bad request" });
+  }
+
+  return Response.json({ movies: moviesResponse.results, totalPages: moviesResponse.total_pages, totalResults: moviesResponse.total_results });
 }
 
 export async function getMoviesPlayingNow(countryCode: string = "us", language: string = "en"): Promise<Movie[]> {

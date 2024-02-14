@@ -1,0 +1,40 @@
+.releaseDateFilter {
+  padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.fieldHeader {
+  font-weight: 400;
+}
+
+.releaseDateFrom,
+.releaseDateTo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 15px;
+}
+
+.releaseDateTo {
+}
+
+.input {
+  width: 155px;
+  border: 0;
+  padding: 10px 15px;
+  margin: 5px 0;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 0 4px var(--color-primary-dark);
+}

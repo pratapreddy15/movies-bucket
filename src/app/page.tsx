@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import { getGenres, getCountries, getLanguages } from "@/utils/themoviedb";
 import CountryList from "@/components/country-list/CountryList";
+import Button from "@/components/button/Button";
 import Spinner from "@/components/spinner/Spinner";
 import styles from "./page.module.css";
 
@@ -64,8 +65,10 @@ export default async function Home() {
               Movies from {countries.length} countries in {languages.length} different languages
             </div>
             <div className={styles.cta}>
-              <button className={[styles.signInBtn, "btn", "btn-primary"].join(" ")}>Sign in</button>
-              <button className={[styles.registerBtn, "btn", "btn-secondary"].join(" ")}>Register</button>
+              <Button mode="primary" extraStyles={{ marginRight: "48px" }}>
+                Sign in
+              </Button>
+              <Button mode="secondary">Register</Button>
             </div>
           </div>
           <div className={styles.listWrapper} role="listbox">

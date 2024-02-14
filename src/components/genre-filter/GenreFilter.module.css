@@ -2,9 +2,15 @@
   padding: 10px 15px;
 }
 
+.header {
+  font-weight: 600;
+}
+
 .toggleGenreBtn {
-  padding: 10px 15px;
-  background-color: transparent;
+  margin: 5px 0;
+  padding: 10px 0;
+  width: 155px;
+  background-color: #fff;
   border: 0;
   outline: 0;
   border-radius: 4px;
@@ -19,6 +25,7 @@
 
 .icon {
   padding: 0 10px;
+  padding-top: 5px;
 }
 
 .genreList {

@@ -57,8 +57,10 @@ function GenreFilter({ loadedGenres }: GenreFilterProps) {
 
   return (
     <div className={styles.genresFilter}>
+      <p className={styles.header}>Genres</p>
       <button className={styles.toggleGenreBtn} onClick={() => setIsExpanded((currState) => !currState)}>
-        Genres ({selectedGenres.length} selected) <span className={styles.icon}>{isExpanded ? <IoChevronUpSharp /> : <IoChevronDownSharp />}</span>
+        <span>{selectedGenres.length === 0 ? "None" : selectedGenres.length} selected </span>
+        <span className={styles.icon}>{isExpanded ? <IoChevronUpSharp /> : <IoChevronDownSharp />}</span>
       </button>
       <ul className={[styles.genreList, isExpanded ? styles.expand : ""].join(" ").trim()}>
         {orderedGenres.map((genre) => (

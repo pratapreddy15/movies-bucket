@@ -1,5 +1,6 @@
 import { getGenres } from "@/utils/themoviedb";
 import GenreFilter from "@/components/genre-filter/GenreFilter";
+import ReleaseDateFilter from "@/components/release-date-filter/ReleaseDateFilter";
 // import PaginationProvider from "@/context/pagination-context";
 import styles from "./layout.module.css";
 
@@ -10,6 +11,7 @@ export default async function BrowseLayout({ children }: Readonly<{ children: Re
   return (
     <div className={styles.browse}>
       <div className={styles.filterPanel}>
+        {/* <ReleaseDateFilter /> */}
         <GenreFilter loadedGenres={genres} />
         {/* <div className={styles.countriesFilter}></div>
         <div className={styles.directorsFilter}></div>

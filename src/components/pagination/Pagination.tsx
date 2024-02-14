@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { KeyValuePair } from "@/types";
 
@@ -8,13 +11,17 @@ type PaginationProps = {
 };
 
 export default function Pagination({ totalPages, queryString }: PaginationProps) {
+  const pathname = usePathname();
   const searchParams = new URLSearchParams(queryString);
-  if (!searchParams.has("page") || isNaN(Number(searchParams.get("page")))) {
+
+  const matches = /^\/browse\/[0-9]+$/.exec(pathname);
+  const page = matches?.at(1);
+  if (!!page) {
     throw new Error("Invalid query string found in the url");
   }
 
-  const page = searchParams.get("page");
-  searchParams.delete("page");
+  // const page = searchParams.get("page");
+  // searchParams.delete("page");
   const pageNumber = Number(page);
 
   return (
